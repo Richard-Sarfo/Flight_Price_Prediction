@@ -67,7 +67,7 @@ def plot_regularization_effect(
 ):
     """
     Plot Train vs Test RMSE across different alpha values
-    to demonstrate overfitting reduction.
+    to demonstrate overfitting reductio
 
     Parameters:
     - df: DataFrame returned from demonstrate_regularization_effect
