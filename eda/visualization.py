@@ -35,3 +35,56 @@ def correlation_heatmap(df):
     plt.title('Correlation Heatmap')
 
     plt.show()
+
+    # Model Interpretation Visualizations
+
+def plot_actual_vs_predicted(y_test, y_pred):
+    plt.figure()
+    plt.scatter(y_test, y_pred)
+    plt.plot(
+        [y_test.min(), y_test.max()],
+        [y_test.min(), y_test.max()]
+    )
+    plt.xlabel("Actual Values")
+    plt.ylabel("Predicted Values")
+    plt.title("Actual vs Predicted Values")
+    plt.show()
+
+def plot_residuals(y_test, y_pred):
+    residuals = y_test - y_pred
+
+    plt.figure()
+    plt.scatter(y_pred, residuals)
+    plt.axhline(0)
+    plt.xlabel("Predicted Values")
+    plt.ylabel("Residuals")
+    plt.title("Residuals vs Predicted Values")
+    plt.show()
+
+def plot_regularization_effect(
+    df,
+    model_name="Ridge Regression"
+):
+    """
+    Plot Train vs Test RMSE across different alpha values
+    to demonstrate overfitting reduction.
+
+    Parameters:
+    - df: DataFrame returned from demonstrate_regularization_effect
+    - model_name: Name to display in the plot title
+    """
+
+    plt.figure(figsize=(8, 5))
+
+    plt.plot(df["Alpha"], df["Train RMSE"], label="Train RMSE")
+    plt.plot(df["Alpha"], df["Test RMSE"], label="Test RMSE")
+
+    plt.xscale("log")
+    plt.xlabel("Alpha (Regularization Strength)")
+    plt.ylabel("RMSE")
+    plt.title(f"{model_name}: Bias–Variance Tradeoff")
+
+    plt.legend()
+    plt.grid(True)
+    plt.show()
+
